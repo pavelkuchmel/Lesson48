@@ -99,7 +99,7 @@ class Teacher extends Person{
 }
 
 let person = new Person("Pavel", "Koutchmel", "Victor", "2/15/1993");
-var teacher = new Teacher("Pavel", "Nikifirov", "Vladimir", "5/12/1970", "Java, C++, C#, Arduino");
+let teacher = new Teacher("Pavel", "Nikifirov", "Vladimir", "5/12/1970", "Java, C++, C#, Arduino");
 console.log(person.toString() + " Age: " + person.age());
 console.log(teacher.toString() + " Age: " + teacher.age());
 
