@@ -57,14 +57,14 @@ let arrayWines = [pinkWine, new wine("Sweet dream", "White wine", 92), new wine(
 
 arrayWines.forEach(a => console.log(a.toString() + " Liters: " + a.countLiters()));*/
 class Person{
-    constructor(firstName, lastName, secondName, bornDate) {
+    constructor(firstName, surName, secondName, bornDate) {
         this.firstName = firstName;
-        this.lastName = lastName;
+        this.surName = surName;
         this.secondName = secondName;
         this.bornDate = bornDate;
     }
     toString(){
-        return "Name: " + this.firstName + " " + this.lastName + " " + this.secondName + " Born date: " + this.bornDate;
+        return "Name: " + this.firstName + " Surname: " + this.surName + " Secondname: " + this.secondName + " Born date: " + this.bornDate;
     }
     age(){
         const bornDate = new Date(this.bornDate);
@@ -78,76 +78,30 @@ class Person{
 class Teacher extends Person{
     #subjects;
 
-    constructor(firstName, lastName, secondName, bornDate, subjects) {
-        super(firstName, lastName, secondName, bornDate);
-        this._subjects = subjects;
+    constructor(firstName, surName, secondName, bornDate, subjects) {
+        super(firstName, surName, secondName, bornDate);
+        this._subjects = subjects.split(",");
     }
 
 
     get subjects() {
         return this._subjects;
     }
+
+    getListSubjects(){
+        let html = + '<ul>';
+        for (let i = 0; i < this._subjects.length; i++){
+            html += '<li>' + this._subjects[i] + '</li>';
+        }
+        html += '</ul>';
+        return html;
+    }
 }
 
 let person = new Person("Pavel", "Koutchmel", "Victor", "2/15/1993");
-let teacher = new Teacher("Pavel", "Nikifirov", "Secondname", "5/12/1970", "Java, C++, C#, Arduino");
+var teacher = new Teacher("Pavel", "Nikifirov", "Leonid", "5/12/1970", "Java, C++, C#, Arduino");
 console.log(person.toString() + " Age: " + person.age());
-console.log(teacher.toString() + " Age: " + teacher.age() + " Subjects: " + teacher.subjects);
+console.log(teacher.toString() + " Age: " + teacher.age());
 
 document.getElementById("h1").innerText = teacher.toString();
-
-/*01
-$(document).ready(function(){
-02
-var link_massiv = {"fl_FIO_soc_google": "websearch_queries1",
-03
-                   "fl_FIO_google": "websearch_queries2",
-04
-                   "fl_IF_soc_google": "websearch_queries3",
-05
-                   "fl_IF_google": "websearch_queries4",
-06
-                   "fl_FIO_soc_ya": "websearch_queries5",
-07
-                   "fl_FIO_ya": "websearch_queries6",
-08
-                   "fl_IF_soc_ya": "websearch_queries7",
-09
-                   "fl_IF_ya": "websearch_queries8",
-10
-                   "email1": "websearch_queries9",
-11
-                   "email2": "websearch_queries10",
-12
-                   "tl": "websearch_queries11",
-13
-                   "tl_soc": "websearch_queries12",
-14
-                   "tl_ya": "websearch_queries13",
-15
-                   "tl_ya_soc": "websearch_queries14"};
-16
-
-17
-var ul = document.createElement('ul');
-18
-    for (elem in link_massiv){
-19
-        var li = document.createElement('li');
-20
-        var a = document.createElement('a');
-21
-        $(a).appendTo(li);
-22
-        $(a).attr('href',link_massiv[elem]);
-23
-        $(a).text(elem);
-24
-        $(li).appendTo(ul);
-25
-    }
-26
-$(ul).appendTo('body');
-27
-});
-*/
+document.getElementById('ul').innerHTML = teacher.getListSubjects();
